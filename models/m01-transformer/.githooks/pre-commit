@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""Guard against committing local-only clutter and oversized artifacts."""
+
+from __future__ import annotations
+
+import pathlib
+import subprocess
+import sys
+
+
+BLOCKED_PREFIXES = (
+    ".codegraph/",
+    ".qwen/",
+    ".venv_25-07/",
+    "venv/",
+    "venv_rocm/",
+    "scratch/",
+)
+BLOCKED_FILES = {".env", ".env.local"}
+MAX_BYTES = 25 * 1024 * 1024
+
+
+def staged_paths() -> list[str]:
+    result = subprocess.run(
+        ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMR"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return [line.strip().replace("\\", "/") for line in result.stdout.splitlines() if line.strip()]
+
+
+def is_blocked(path: str) -> bool:
+    if path in BLOCKED_FILES:
+        return True
+    return any(path.startswith(prefix) for prefix in BLOCKED_PREFIXES)
+
+
+def main() -> int:
+    repo_root = pathlib.Path.cwd()
+    paths = staged_paths()
+
+    blocked = [path for path in paths if is_blocked(path)]
+    if blocked:
+        print("Refusing to commit local-only or generated paths:", file=sys.stderr)
+        for path in blocked:
+            print(f"  - {path}", file=sys.stderr)
+        return 1
+
+    oversized: list[str] = []
+    for path in paths:
+        file_path = repo_root / path
+        if file_path.is_file() and file_path.stat().st_size > MAX_BYTES:
+            oversized.append(f"{path} ({file_path.stat().st_size} bytes)")
+
+    if oversized:
+        print("Refusing to commit oversized files (>25 MiB):", file=sys.stderr)
+        for entry in oversized:
+            print(f"  - {entry}", file=sys.stderr)
+        return 1
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

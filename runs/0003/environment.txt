@@ -1,0 +1,15 @@
+hostname: DESKTOP-F4PA4J7
+platform: Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+python_version: 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
+torch_version: 2.14.0+rocm10.1.0
+cuda_available: True
+rocm_version: 7.16.26385
+device_name: AMD Radeon RX 9060 XT
+git_hash: c03998a166f0c50cda1a08e641eff558fed4c9fb
+git_diff: 
+os: Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39
+command_line: /opt/tts_env/lib/python3.12/site-packages/pytest/__main__.py tests/test_enterprise_training.py tests/test_engine_v2_hardened.py
+seed: 42
+cpu: x86_64
+cpu_cores: 12
+ram_total_gb: 15.41

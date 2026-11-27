@@ -1,0 +1,25 @@
+{
+  "ffn_baseline": [
+    {
+      "tokens": 512,
+      "d_model": 640,
+      "d_ff": 1728,
+      "latency_ms": 0.47606800002540695,
+      "tokens_per_sec": 1075476.6125273604
+    },
+    {
+      "tokens": 2048,
+      "d_model": 640,
+      "d_ff": 1728,
+      "latency_ms": 1.2286559999847668,
+      "tokens_per_sec": 1666862.002078199
+    },
+    {
+      "tokens": 8192,
+      "d_model": 640,
+      "d_ff": 1728,
+      "latency_ms": 4.719014000002062,
+      "tokens_per_sec": 1735955.8585747827
+    }
+  ]
+}

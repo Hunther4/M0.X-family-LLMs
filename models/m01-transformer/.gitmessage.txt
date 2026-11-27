@@ -1,0 +1,6 @@
+feat(scope): short summary
+
+# Why:
+# What changed:
+# Verification:
+# Rollback:

@@ -1,0 +1,121 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+venv_rocm/
+.venv/
+.venv_25-07/
+env/
+ENV/
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# Type checking / Linting
+.mypy_cache/
+.ruff_cache/
+.pytype/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+._*
+
+# Data (large training/generated files)
+data/tinyshakespeare.txt
+data/tokenizer.json
+
+# Model checkpoints (too large for git — use releases or external storage)
+checkpoints/
+runs/**/checkpoints/
+*.pt
+*.bin
+runs/**/*.bin
+
+# Raw training data (large, not source)
+data/raw_text/
+data/splits/
+data/splits_*/
+data_archived/
+data/distillation/
+data/Info_Models/
+
+# Evaluation results (generated, not source)
+artifacts/evals/
+
+# Project workflow artifacts
+openspec/changes/
+.codegraph/
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Entire data tree excluded (large corpora / tokenizer artifacts; not source)
+data/
+
+# Obvious garbage / scratch / tool clutter
+.qwen/
+Local_temporal/
+scratch/
+results/
+artifacts/
+Openspecs_AI/
+
+# Training run artifacts (logs, metrics, profiles — regenerated each run)
+runs/
+
+# Temp / scratch scripts (not source)
+.temp_*
+
+# External vendor clones (re-fetchable)
+external/
+
+# ─── Archive generated / legacy / local clutter ───────────
+archive/data/
+archive/generated/
+archive/local-tools/
+archive/scratch/legacy-scripts/

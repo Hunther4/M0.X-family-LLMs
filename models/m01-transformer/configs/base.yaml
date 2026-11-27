@@ -1,0 +1,56 @@
+# M0.1 Enterprise Configuration
+# Model: ~99.7M params, MLA + MoE, 16K BPE
+# Updated with SOTA innovations from DeepSeek V3/V4, Moonshot Kimi, Qwen 2.5/3, Gemma 4
+
+model:
+  vocab_size: 16384
+  context_length: 32768
+  d_model: 640
+  n_heads: 10
+  n_layers: 12
+  # MoE: 4 macro-area experts (Code, Reasoning, Facts, Search/Grounding) + 1 shared (Universal Syntax)
+  num_experts: 4
+  num_shared_experts: 1
+  moe_top_k: 1
+  use_mla: true
+  mla_kv_c_dim: 128
+  mla_rope_dim: 16
+  num_dense_layers: 2
+  d_ff_shared: 448
+  d_ff_routed: 784
+  # Partial RoPE (p-RoPE): 25% of dimensions carry positional info (Gemma 4 style)
+  partial_rotary_factor: 0.25
+  # SwiGLU clamping for routed experts (DeepSeek V4 style)
+  swiglu_limit: 10.0
+  # Router scoring: "softmax" or "sqrtsoftplus" (DeepSeek V4 style)
+  scoring_func: sqrtsoftplus
+  # Cross-Layer KV Reuse (DeepSeek V4 / CSA2 style): 2 = alternate Full/Reuse (50% KV memory savings)
+  kv_sharing_interval: 2
+  dropout: 0.0
+  attention_backend: auto
+  initializer_range: 0.02
+
+training:
+  batch_size: 8
+  seq_len: 1024
+  max_lr: 0.0003
+  min_lr_ratio: 0.1
+  warmup_steps: 200
+  max_steps: 10000
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  max_norm: 1.0
+  log_interval: 10
+  save_interval: 500
+  val_interval: 500
+  grad_accum_steps: 4
+  log_moe_metrics: true
+  moe_collapse_consecutive_steps: 50
+  moe_collapse_expert_ratio: 0.3
+
+  # Enterprise SOTA Suite
+  optimizer: hybrid_muon
+  muon_lr: 0.02
+  scheduler: wsd
+  stable_ratio: 0.8

@@ -1,0 +1,18 @@
+{
+  "auto": {
+    "latency_ms": 0.5155820000072708,
+    "status": "success"
+  },
+  "math": {
+    "latency_ms": 0.5270160000145552,
+    "status": "success"
+  },
+  "efficient": {
+    "latency_ms": 0.5532220000168309,
+    "status": "success"
+  },
+  "flash": {
+    "latency_ms": 0.5193060000237892,
+    "status": "success"
+  }
+}

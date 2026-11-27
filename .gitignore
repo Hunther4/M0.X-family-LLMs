@@ -1,0 +1,67 @@
+# Python & caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+venv_rocm/
+.venv/
+.venv_*/
+env/
+
+# Model checkpoints & weights (code-only repo)
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+*.sha256
+checkpoints/
+**/checkpoints/
+
+# Corpora, raw datasets & archives
+data/
+**/data/
+archive/
+**/archive/
+
+# Binaries, DLLs & hardware monitor artifacts
+*.exe
+*.dll
+*.pdb
+monitoreo_electrico/LibreHardwareMonitor/
+monitoreo_electrico/power_telemetry_go.csv
+monitoreo_electrico/historico_telemetria/
+
+# Root workspace symlinks (models live under models/)
+/M0.1
+/data
+/pytest.ini
+/scripts
+/src
+/tests
+/suma_maxima
+/power_telemetry_go.csv
+
+# Tooling, IDE & logs
+.codegraph/
+.atl/
+.agents/
+.idea/
+.vscode/
+*.log
+logs/
+.env
+.env.*
+_archive_m01_git/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
